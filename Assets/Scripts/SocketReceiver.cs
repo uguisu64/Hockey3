@@ -23,6 +23,7 @@ public class SocketReceiver
     {
         socket = new Socket(SocketType.Stream, ProtocolType.Tcp);
         socket.NoDelay = true;
+        Debug.Log(address + port);
         socket.Connect(address, port);
         enemyPosition = 0;
         gameState = GameState.WAITING;

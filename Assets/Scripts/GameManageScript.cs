@@ -14,13 +14,14 @@ public class GameManageScript : MonoBehaviour
 
     public Text scoreText;
     public Text finishText;
+    public Text roomIdText;
 
     public Button nextButton;
-    public Button retryButton;
     // Start is called before the first frame update
     void Start()
     {
         socketReceiver = new SocketReceiver(TitleSceneScript.ipaddress, TitleSceneScript.port);
+        roomIdText.text = "RoomId : " + TitleSceneScript.roomId.ToString();
     }
 
     // Update is called once per frame
@@ -49,20 +50,13 @@ public class GameManageScript : MonoBehaviour
             case GameState.FINISHED_WIN:
                 finishText.text = "WIN";
                 nextButton.gameObject.SetActive(true);
-                retryButton.gameObject.SetActive(true);
                 break;
 
             case GameState.FINISHED_LOSE:
                 finishText.text = "LOSE";
                 nextButton.gameObject.SetActive(true);
-                retryButton.gameObject.SetActive(true);
                 break;
         }
-    }
-
-    public void onRetryButton()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void onNextButton()
